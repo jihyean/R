@@ -1,0 +1,159 @@
+오전 10:11 2022-12-05
+
+보강
+
+disl ~ speed
+속도에 따른 제동거리
+
+코드 11-1(이건 종속:독립이 1:1)
+head(cars)
+plot(dist~speed, data=cars)
+
+model <- lm(dist~speed, cars)
+model
+
+abline(model)
+coef(model)[1]
+coef(model)[2]
+
+코드 11-(이건 독립이 많음)
+
+11-6(로지스틱 회귀분석)
+걍 넘어감
+
+12챕터
+군집화(클러스터링)
+
+코드12-1 R에서의 k-평균 군집화
+mydata <- iris[,1:4]
+
+fit <- kmeans(x=mydata, centers = 3)
+fit
+fit$cluster
+fit$centers
+
+library(cluster)
+clusplot(mydata, fit$cluster, color=TRUE, shade=TRUE,
+         labels=2, lines=0)
+subset(mydata, fit$cluster==2)
+
+실습테스트
+교재에 나온거 위주로(구현할 수 있는지)
+오픈북, 오픈서치
+명령어 암기는 아님
+각자 pc를 가지고 하는 말든
+실습 문제를 13장에 있는거 위주 제출
+시험 11시반부터 출석은 11시
+R을 통해 어플리케이션 등을 할 수 있는지
+
+코드 12-3
+
+13장 데이터 분석 사례
+돔
+
+#old_content > table > tbody > tr:nth-child(1) > td.title > a.movie.color_b
+
+#old_content > table > tbody > tr:nth-child(1) > td.title
+
+#old_content > table> tr.title
+
+
+1
+install.packages("rvest")
+
+library(rvest)
+url <- "https://movie.naver.com/movie/point/af/list.naver"
+html <- read_html(url)
+html
+
+review_cell <- html_nodes(html, "#old_content table tr .title")
+review_cell
+
+score <- html_nodes(review_cell, "em") %>% html_text()
+score
+
+review <- review_cell %>% html_text()
+review
+
+index.start <- regexpr("\t별점 -", review)
+index.start
+
+index.end <- regexpr("\t신고 -", review)
+index.end
+
+4-1
+
+
+4-2
+review <- substring(review, inex.start, index.end)
+review <- substring(review, 16)
+review <- gsub("[|\n|\t]", "", review)
+review <- trimws(review, "both")
+review.page <- c(review.page, review)
+
+review.page
+
+
+
+
+
+
+
+
+
+
+
+콘치즈
+허니갈릭 햄치즈
+딥치즈베이컨
+베이컨 치즈 베이글
+
+
+install.packages("rvest")
+
+library(rvest)
+url <- "https://movie.naver.com/movie/point/af/list.naver"
+html <- read_html(url)
+html
+
+review_cell <- html_nodes(html, "#old_content table tr .title")
+review_cell
+
+score <- html_nodes(review_cell, "em") %>% html_text()
+score
+
+review <- review_cell %>% html_text()
+review
+
+index.start <- regexpr("\t별점 -", review)
+index.start
+
+index.end <- regexpr("\t신고 -", review)
+index.end
+
+url.page <- "https://movie.naver.com/movie/point/af/list.nhn?&page="
+page.start <- 1
+page.end <- 5
+
+review.page <- NULL
+
+for(p in page.start:page.end){
+  url <- paste(url.page, p , sep = "")
+  html <- read_html(url)
+  review_cell <- html_nodes(html, "#old_content table tr .title")
+  score <- html_nodes(review_cell, "em") %>% html_text()
+  review <- review_cell %>% html_text()
+  
+  index.start <- regexpr("\t별점 -", review)
+  index.end <- regexpr("\t신고 -", review)
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,146 @@
+오전 10:03 2022-11-14
+
+챕터8. 데이터 시각화
+
+트리맵
+데이터 시각화
+네모가 데이커의 총량
+
+#코드 8-1 트리맵 ???
+install.pakages("treemap")
+bg.labels="yellow" 빼라
+
+library(treemap)
+data(GNI2014)
+head(GNI2014)
+treemap(GNI2014,
+index=c("content", "iso3"),
+vSize="population",
+vcolor="GNI",
+type="value",
+title="world's GNI)
+
+#코드 8-2 state.x77 ???
+library(treemap)
+st <- data.frame(state.x77)
+st <- data.frame(st, stname=rownames(st))
+
+treemap(st,
+index=c("stname"),
+vsize="Area",
+vColor="Income",
+type="value",
+title="USA states area and income")
+
+#코드 8-3 버블차트???
+범죄율과 문맹률은 상관이 있지만
+범죄율과 인구수는 상관 없다
+인과관계와 상관관계
+
+st <- data.frame(state.x77)
+sybols(st$lliteracy, st$Murder,
+circles=st$Population,
+inches=0.3,
+fg="white",
+bg="lightgray",
+lwd=1.5,
+xlab="rate of lll
+
+#코드 8-4 모자이크 플롯
+비율 측면으로 봄
+head(mtcars)
+mosaicplot(~gear+vs, data=mtcars, color=TRUE,
+           main = "Gear and vs")
+
+#코드 8-5 ggplot
+library(ggplot2)
+
+month <- c(1,2,3,4,5,6)
+rain <- c(55,50,45,50,60,70)
+df <- data.frame(month, rain)
+df
+
+ggplot(df, aes(x=month, y=rain)) +
+  geom_bar(stat="identity",
+           width=0.7,
+           fill="steelblue")
+
+#코드 8-6 막대그래프 꾸미기
+ggplot(df, aes(x=month, y=rain)) +
+  geom_bar(stat="identity",
+           width=0.7,
+           fill="steelblue") +
+  ggtitle("월별 강수량") +
+  theme(plot.title = element_text(size = 25, face = "bold", colour = "steelblue")) +
+  labs(x="월", y="강수량") +
+  coord_flip()
+
+#코드 8-7 ???
+
+#코드 8-8
+library(ggplot2)
+
+ggplot(iris, aes(x=Sepal.Width, fill=Species, color=Species)) +
+  geom_histogram(binwidth = 0.5, position = "dodge") +
+  theme(legend.position = "top")
+
+#코드 8-9
+#코드 8-10
+library(ggplot2)
+
+ggplot(data=iris, aes(x=Petal.Length, y=Petal.Width,
+                      color=Species)) +
+  geom_point(size=3) +
+  ggtitle("꽃잎의 길이와 폭") +
+  theme(plot.title = element_text(size = 25, face = "bold", colour = "steelblue"))
+
+#코드 8-11 기본적인 상자그림 작성하기
+
+
+차원축소
+
+#코드 8-14 R을 이용한 차원 축소 - 4차원 데이터를 2차원 산점도로 작성하기
+데이터 중복 제외**
+
+#코드 8-15 4차원 데이터를 3차원 산점도로 작성하기
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
